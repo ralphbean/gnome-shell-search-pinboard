@@ -1,13 +1,13 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %{!?pyver: %global pyver %(%{__python} -c "import sys ; print sys.version[:3]")}
 
-%global modname gs_search_github_repositories
-%global busname org.gnome.githubrepositories.search
+%global modname gs_search_pinboard
+%global busname org.gnome.pinboard.search
 
-Name:           gnome-shell-search-github-repositories
-Version:        1.0.1
+Name:           gnome-shell-search-pinboard
+Version:        1.0.0
 Release:        1%{?dist}
-Summary:        Search your Github Repos from the gnome-shell
+Summary:        Search your pinboard.in account from the gnome-shell
 
 License:        GPLv3+
 URL:            https://github.com/ralphbean/%{name}
@@ -23,10 +23,11 @@ Requires:       gnome-shell
 Requires:       pygobject3
 Requires:       python-requests
 Requires:       python-keyring
+Requires:       python-beautifulsoup4
 
 %description
-gnome-shell-search-github-repositories includes results from your github
-repositories in gnome-shell search results.
+gnome-shell-search-pinboard includes results from your pinboard.in
+account in gnome-shell search results.
 
 %prep
 %setup -q
@@ -39,8 +40,8 @@ repositories in gnome-shell search results.
     --install-data=%{_datadir} --root %{buildroot}
 
 # Glade file
-mkdir -p %{buildroot}%{_datadir}/gnome-shell-search-github/
-install -m 0644 data/popup.glade %{buildroot}%{_datadir}/gnome-shell-search-github/popup.glade
+mkdir -p %{buildroot}%{_datadir}/gnome-shell-search-pinboard/
+install -m 0644 data/popup.glade %{buildroot}%{_datadir}/gnome-shell-search-pinboard/popup.glade
 
 # Search provider definition
 mkdir -p %{buildroot}%{_datadir}/gnome-shell/search-providers
@@ -73,9 +74,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_bindir}/%{name}-config
 
 %{python_sitelib}/%{modname}/
-%{python_sitelib}/gnome_shell_search_github_repositories-%{version}-py%{pyver}.egg-info/
+%{python_sitelib}/gnome_shell_search_pinboard-%{version}-py%{pyver}.egg-info/
 
-%{_datadir}/gnome-shell-search-github/popup.glade
+%{_datadir}/gnome-shell-search-pinboard/popup.glade
 %{_datadir}/gnome-shell/search-providers/%{busname}.ini
 %{_datadir}/dbus-1/services/%{busname}.service
 %{_sysconfdir}/dbus-1/system.d/%{busname}.conf
@@ -83,32 +84,5 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
-* Sat Nov 10 2012 Ralph Bean <rbean@redhat.com> - 1.0.1-1
-- No more ~/.search-github flat file with authn creds.
-- Prompt user for password with a gtk3 widget.
-- Store password in the gnome keyring.
-
-* Wed Nov 07 2012 Ralph Bean <rbean@redhat.com> - 1.0.0-1
-- Search organizations as well.
-
-* Tue Nov 06 2012 Ralph Bean <rbean@redhat.com> - 1.0.0rc2-1
-- Proof of concept.
-- Read auth from a config file.
-- Putting up for fedora review.
-
-* Wed Oct 31 2012 Ralph Bean <rbean@redhat.com> - 1.0.0a-1
-- Forked from gnome-shell-search-fedora-packages.
-
-* Tue Oct 30 2012 Luke Macken <lmacken@redhat.com> - 0.3.1-1
-- Update our gsettings schema to enable the service once installed.
-
-* Wed Oct 24 2012 Luke Macken <lmacken@redhat.com> - 0.3.0-1
-- 0.3.0
-- Require fedmsg > 0.5.5 for fedmsg.text.make_processors
-
-* Thu Oct 06 2012 Luke Macken <lmacken@redhat.com> - 0.2.1-1
-- 0.2.1 release
-- Add the GSettings schema
-
-* Thu Oct 04 2012 Luke Macken <lmacken@redhat.com> - 0.2.0-1
-- Initial package.
+* Sat Nov 10 2012 Ralph Bean <rbean@redhat.com> - 1.0.0-1
+- Full rewrite.  Fork from gnome-shell-search-github-repositories.

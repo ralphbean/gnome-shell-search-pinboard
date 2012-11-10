@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.gnome.pinboard.search
+Exec=/usr/bin/gnome-shell-search-pinboard-daemon

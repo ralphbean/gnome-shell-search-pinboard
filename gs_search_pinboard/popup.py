@@ -33,13 +33,13 @@ class Handler(object):
         Gtk.main_quit()
 
     def save_creds(self, username, password):
-        service = 'github-search-' + getpass.getuser()
+        service = 'pinboard-search-' + getpass.getuser()
         keyring.set_password(service, "username", username)
         keyring.set_password(service, "password", password)
 
 
 class lock_file(object):
-    dname = os.path.expanduser("~/.cache/search-github-repos/")
+    dname = os.path.expanduser("~/.cache/search-pinboard/")
     fname = dname + "popup.pid"
 
     def __enter__(self, *args, **kw):
@@ -59,7 +59,7 @@ class lock_file(object):
 def main():
     with lock_file():
         builder = Gtk.Builder()
-        fname = "/usr/share/gnome-shell-search-github/popup.glade"
+        fname = "/usr/share/gnome-shell-search-pinboard/popup.glade"
 
         if os.path.exists("data/popup.glade"):
             builder.add_from_file("data/popup.glade")

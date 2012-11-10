@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.githubrepositories.search
-Exec=/usr/bin/gnome-shell-search-github-repositories-daemon
