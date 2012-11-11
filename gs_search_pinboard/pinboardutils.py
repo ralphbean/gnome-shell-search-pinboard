@@ -3,6 +3,8 @@ import getpass
 import keyring
 import requests
 
+keyring_service = 'pinboard-search-' + getpass.getuser()
+
 
 def load_auth():
     """ Load auth from the keyring daemon.
@@ -12,7 +14,6 @@ def load_auth():
     on purpose (for some reason).  It's not pluggable so we can't just DIY
     without diving into gnome-shell proper.  Gotta do that some day, I guess.
     """
-    keyring_service = 'pinboard-search-' + getpass.getuser()
     username = keyring.get_password(keyring_service, 'username')
     password = keyring.get_password(keyring_service, 'password')
     return username, password
@@ -29,7 +30,14 @@ def get_all(username, auth, term):
 
     # TODO -- persist the session.  it would be faster.
     with requests.session() as sess:
-        response = sess.post("https://pinboard.in/auth", data=auth_dict)
+        try:
+            response = sess.post("https://pinboard.in/auth", data=auth_dict)
+        except Exception:
+            keyring.set_password(keyring_service, 'username', '')
+            keyring.set_password(keyring_service, 'password', '')
+            print "bogus credentials"
+            return []
+
         response = sess.get(url, params=data)
 
     soup = bs4.BeautifulSoup(response.content)
