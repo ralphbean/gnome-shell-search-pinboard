@@ -60,7 +60,6 @@ class SearchPinboardService(dbus.service.Object):
     local_icon = _icon_cache_dir + "/bluepin.gif"
 
     _search_cache = {}
-    _request_cache = {}
 
     _object_path = '/%s' % bus_name.replace('.', '/')
     __name__ = "SearchPinboardService"
@@ -108,12 +107,7 @@ class SearchPinboardService(dbus.service.Object):
         term = ''.join(terms)
 
         def __build_rows(username, auth):
-            if username not in self._request_cache:
-                # Use http://paste.stg.fedoraproject.org/1641/
-                matches = pinboardutils.get_all(username, auth, term)
-                self._request_cache[username] = matches
-
-            matches = self._request_cache[username]
+            matches = pinboardutils.get_all(username, auth, term)
             rows = [r['description'] + ":__:" + r['link'] for r in matches]
             return rows
 
