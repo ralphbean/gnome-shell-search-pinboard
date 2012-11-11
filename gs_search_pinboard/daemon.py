@@ -56,8 +56,9 @@ class SearchPinboardService(dbus.service.Object):
     http_prefix = "https://pinboard.in"
 
     _icon_cache_dir = os.path.expanduser("~/.cache/search-pinboard/")
-    remote_icon = "http://pinboard.in/bluepin.gif"
-    local_icon = _icon_cache_dir + "/bluepin.gif"
+    remote_icon = "http://upload.wikimedia.org/wikipedia/" + \
+        "en/6/6e/Pinboard_logo.png"
+    local_icon = _icon_cache_dir + "/bluepin.png"
 
     _search_cache = {}
 
