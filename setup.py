@@ -7,7 +7,7 @@ requires = [
 
 setup(
     name="gnome-shell-search-pinboard",
-    version='1.0.0',
+    version='1.0.3',
     description="A gnome shell search provider for your pinboard.in account",
     url="http://github.com/ralphbean/gnome-shell-search-pinboard",
     author="Ralph Bean",

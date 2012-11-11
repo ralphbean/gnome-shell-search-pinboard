@@ -5,7 +5,7 @@
 %global busname org.gnome.pinboard.search
 
 Name:           gnome-shell-search-pinboard
-Version:        1.0.0
+Version:        1.0.3
 Release:        1%{?dist}
 Summary:        Search your pinboard.in account from the gnome-shell
 
@@ -84,5 +84,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %changelog
+* Sat Nov 10 2012 Ralph Bean <rbean@redhat.com> - 1.0.3-1
+- Version bump to get around git flow issues.
+
 * Sat Nov 10 2012 Ralph Bean <rbean@redhat.com> - 1.0.0-1
 - Full rewrite.  Fork from gnome-shell-search-github-repositories.
