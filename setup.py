@@ -6,20 +6,20 @@ requires = [
 ]
 
 setup(
-    name="gnome-shell-search-github-repositories",
-    version='1.0.1',
-    description="A gnome shell search provider for your github repos",
-    url="http://github.com/ralphbean/gnome-shell-search-github-repositories",
+    name="gnome-shell-search-pinboard",
+    version='1.0.3',
+    description="A gnome shell search provider for your pinboard.in account",
+    url="http://github.com/ralphbean/gnome-shell-search-pinboard",
     author="Ralph Bean",
     author_email="rbean@redhat.com",
     license='GPLv3',
     install_requires=requires,
-    packages=['gs_search_github_repositories'],
+    packages=['gs_search_pinboard'],
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'gnome-shell-search-github-repositories-daemon = gs_search_github_repositories.daemon:main',
-            'gnome-shell-search-github-repositories-config = gs_search_github_repositories.popup:main',
+            'gnome-shell-search-pinboard-daemon = gs_search_pinboard.daemon:main',
+            'gnome-shell-search-pinboard-config = gs_search_pinboard.popup:main',
         ],
     }
 )

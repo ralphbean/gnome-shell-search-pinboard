@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.pinboard.search" path="/org/gnome/pinboard/search/">
+    <key type="b" name="enabled">
+      <default>true</default>
+      <summary>pinboard.in search enabled</summary>
+      <description>Whether or not gnome-shell search should return results from your pinboard.in account</description>
+    </key>
+  </schema>
+</schemalist>
