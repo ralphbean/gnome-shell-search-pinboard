@@ -3,12 +3,12 @@ gnome-shell-search-pinboard
 
 Search through your own http://pinboard.in account in the gnome shell.
 
-Installing
-----------
+RETIRED
+-------
 
-Only available for gnome-shell-3.6 and later (Fedora 18 and later)::
+This project is retired.  If you would like to fork it and revive it, you are
+more than welcome to.
 
-    yum -y install gnome-shell-search-pinboard
 
 Configuration
 -------------
